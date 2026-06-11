@@ -1,0 +1,5 @@
+Pfizer handles thousands of pharmaceutical documents daily.
+These include shipping labels, compliance reports, and logistics forms.
+The goal of this system is to extract useful information quickly and accurately.
+Manual processing is slow and error-prone.
+AI can help automate document understanding and reduce delays in healthcare supply chains.
