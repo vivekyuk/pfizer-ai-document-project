@@ -154,4 +154,49 @@ Pharmaceutical documents are unstructured and complex. NLP and LLMs help:
 * Identify important dates, products, and organizations
 * Reduce manual review time in healthcare workflows
 
+## Computer Vision and OCR
+
+### Computer Vision (CV)
+
+Computer Vision is a field of AI that allows computers to “see” and interpret images and videos. Instead of eyes, computers use algorithms to analyze visual data and identify patterns.
+
+Common applications:
+
+* Self-driving cars (detecting pedestrians and road signs)
+* Healthcare (analyzing medical scans)
+* Document processing (reading scanned forms and reports)
+
+### Optical Character Recognition (OCR)
+
+OCR is a subset of Computer Vision that focuses on extracting text from images or scanned documents and converting it into machine-readable text.
+
+Example:
+
+* Turning a scanned PDF or image of a document into editable text
+
+### How OCR is Used in Real Life
+
+In industries like pharmaceuticals, OCR is used to:
+
+* Extract information from compliance documents
+* Read quality certificates and technical reports
+* Reduce manual document processing
+
+### How CV and OCR Fit into AI
+
+* AI → the overall system
+* Machine Learning → learns patterns from data
+* Deep Learning → powers modern vision systems (especially CNNs)
+* Computer Vision → allows AI to interpret images
+* OCR → extracts text from images (a key CV application)
+
+### Relevance to Pfizer Externship
+
+This is a core part of the project because pharmaceutical companies deal with:
+
+* Scanned compliance documents
+* Vendor certificates
+* Technical PDFs and reports
+
+OCR will later be used to convert these documents into usable text so AI models can analyze and classify them.
 
