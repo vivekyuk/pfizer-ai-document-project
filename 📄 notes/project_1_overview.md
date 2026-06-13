@@ -113,3 +113,45 @@ The document intelligence system developed during this externship will combine m
 
 Together, these technologies can help reduce manual document review and improve operational efficiency in pharmaceutical supply chains.
 
+## Machine Learning, LLMs, and NLP (Extended Foundation)
+
+### Machine Learning (ML)
+
+Machine Learning is a subset of AI where systems learn patterns from data instead of being explicitly programmed. It improves as it is exposed to more data.
+
+### Deep Learning
+
+Deep Learning uses neural networks with multiple layers to automatically learn complex patterns from large datasets.
+
+### Large Language Models (LLMs)
+
+LLMs generate text by predicting the next word in a sequence based on patterns learned from massive datasets. They are trained on large amounts of text and refined through fine-tuning and human feedback.
+
+### Natural Language Processing (NLP)
+
+NLP helps computers understand and process human language by converting unstructured text into structured data.
+
+Common NLP tasks include:
+
+* Tokenization (splitting text into words)
+* Named Entity Recognition (extracting key information like dates, organizations, products)
+* Sentiment analysis (detecting emotion or tone)
+
+### How Everything Connects
+
+* AI = the overall system
+* Machine Learning = systems learning from data
+* Deep Learning = advanced ML using neural networks
+* NLP = how AI understands language
+* LLMs = systems that generate language using deep learning + NLP
+
+### Why This Matters for Pfizer Externship
+
+Pharmaceutical documents are unstructured and complex. NLP and LLMs help:
+
+* Extract key information from compliance documents
+* Classify document types automatically
+* Identify important dates, products, and organizations
+* Reduce manual review time in healthcare workflows
+
+
