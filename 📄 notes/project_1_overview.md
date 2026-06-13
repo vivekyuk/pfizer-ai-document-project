@@ -50,3 +50,66 @@ The final Pfizer document intelligence system will combine multiple AI technolog
 * Machine Learning techniques to classify and organize files
 
 These technologies help reduce manual review time, improve accuracy, and support faster decision-making in pharmaceutical operations.
+
+## Machine Learning, Deep Learning, and Generative AI
+
+### Machine Learning
+
+Machine Learning (ML) is a subset of Artificial Intelligence that learns patterns from data rather than relying entirely on explicitly programmed rules. ML models improve performance by training on large datasets and identifying relationships within the data.
+
+Example:
+
+* Email spam detection
+* Fraud detection
+* Recommendation systems
+
+### Deep Learning
+
+Deep Learning is a specialized branch of Machine Learning that uses artificial neural networks inspired by the structure of the human brain.
+
+Neural networks consist of:
+
+* Input layer
+* Hidden layers
+* Output layer
+
+Deep learning can automatically identify complex patterns without requiring extensive manual feature engineering.
+
+Applications include:
+
+* Image recognition
+* Speech recognition
+* Language understanding
+
+### Transformers and Attention
+
+Transformer models, introduced in 2017, improved AI's ability to understand context within language.
+
+A key innovation is the attention mechanism, which allows models to focus on the most relevant words in a sentence instead of processing information strictly in sequence.
+
+This advancement enabled major breakthroughs in natural language processing.
+
+### Generative AI
+
+Generative AI is a subset of deep learning that creates new content based on patterns learned from large datasets.
+
+Examples:
+
+* Text generation
+* Image generation
+* Code generation
+* Chatbots
+
+Popular examples include ChatGPT, Gemini, and other large language models.
+
+### Relevance to the Pfizer Project
+
+The document intelligence system developed during this externship will combine multiple AI technologies:
+
+* OCR to convert document images into text
+* NLP to understand document content
+* Transformer-based language models to answer questions
+* Machine learning techniques to classify and organize pharmaceutical documents
+
+Together, these technologies can help reduce manual document review and improve operational efficiency in pharmaceutical supply chains.
+
