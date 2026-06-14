@@ -200,3 +200,80 @@ This is a core part of the project because pharmaceutical companies deal with:
 
 OCR will later be used to convert these documents into usable text so AI models can analyze and classify them.
 
+## Pharmaceutical Industry Basics
+
+The pharmaceutical industry discovers, develops, manufactures, and distributes medicines.
+
+Drug development process:
+- Discovery
+- Preclinical Testing
+- Clinical Trials
+- FDA Review
+- Manufacturing & Distribution
+
+Key fact:
+- Drug development typically takes 10–15 years.
+- Only a small percentage of discovered compounds become approved medicines.
+
+### Three Main Areas of Pharma
+
+1. Research & Development (R&D)
+   - Drug discovery and clinical research
+
+2. Manufacturing
+   - Producing medicines under GMP standards
+
+3. Clinical Supply & Operations
+   - Managing materials, documentation, and clinical trial support
+
+## Pharmaceutical Compliance
+
+Pharmaceutical companies must maintain documentation proving components are safe, compliant, and traceable.
+
+Documentation should generally be reviewed every 3–4 years because:
+- Regulations change
+- Manufacturing processes change
+- Testing standards evolve
+
+Poor documentation management can lead to:
+- FDA citations
+- Product recalls
+- Delayed drug approvals
+
+## Vendor Documentation Files
+
+Vendor files often contain multiple document types in one PDF:
+
+- Quality Certificates
+- Compliance Bulletins
+- Technical Support Bulletins
+- Formulation Characteristics
+- Engineering Drawings
+- Certificates of Analysis (COA)
+
+A single file may contain documents spanning many years.
+
+## Date Extraction Challenges
+
+Documents contain multiple date formats:
+- 21 MAR 2025
+- 03-Jun-2025
+- 23 Nov 2009
+
+Common date types:
+- Manufacturing Date
+- Effective Date
+- Signature Date
+- Revision Date
+- Issue Date
+
+Different dates serve different compliance purposes.
+
+## Relevance to Project
+
+The AI document intelligence system will:
+- Use OCR to extract text from documents
+- Classify document types
+- Extract important dates and compliance information
+- Flag outdated documentation
+- Reduce manual review work
