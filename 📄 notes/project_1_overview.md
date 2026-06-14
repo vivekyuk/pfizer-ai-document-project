@@ -277,3 +277,34 @@ The AI document intelligence system will:
 - Extract important dates and compliance information
 - Flag outdated documentation
 - Reduce manual review work
+
+## AI Document Processing
+
+Two core technologies work together:
+
+### Computer Vision (CV)
+- Processes images and scanned documents
+- Uses OCR to convert images into machine-readable text
+- Extracts text from PDFs and scanned files
+
+### Natural Language Processing (NLP)
+- Analyzes and understands extracted text
+- Identifies dates, vendor names, and document types
+- Extracts structured information from unstructured documents
+
+### AI Document Processing Workflow
+
+1. CV/OCR extracts text from documents
+2. NLP analyzes the extracted text
+3. AI classifies document types
+4. Important information is extracted
+5. Compliance rules are applied
+
+### Common AI Use Cases
+
+- Document Classification
+- Data Extraction
+- Compliance Monitoring
+- Age Compliance Flagging
+- Document Summarization
+- Automated Compliance Checks
