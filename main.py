@@ -36,9 +36,23 @@ def simple_analysis(text):
     print(f"Total words: {len(words)}")
     print(f"Preview: {' '.join(words[:30])}...")
 
+# -------------------------
+# 4. DOCUMENT STATISTICS
+# -------------------------
+def document_statistics(text):
+    """Calculate basic document statistics."""
+    words = text.split()
+    characters = len(text)
+    sentences = text.count(".") + text.count("!") + text.count("?")
+
+    print("\n--- DOCUMENT STATISTICS ---")
+    print(f"Word count: {len(words)}")
+    print(f"Character count: {characters}")
+    print(f"Sentence count: {sentences}")
+
 
 # -------------------------
-# 4. MAIN PIPELINE
+# 5. MAIN PIPELINE
 # -------------------------
 def main():
     file_path = "sample_output.txt"
@@ -47,7 +61,6 @@ def main():
     cleaned_text = clean_text(text)
 
     simple_analysis(cleaned_text)
-
-
+    document_statistics(cleaned_text)
 if __name__ == "__main__":
     main()
