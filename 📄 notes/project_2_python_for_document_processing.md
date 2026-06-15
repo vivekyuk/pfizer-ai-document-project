@@ -31,3 +31,45 @@ These skills will later be used to:
 * Process pharmaceutical documents
 * Standardize data formats
 * Prepare data for OCR and AI-powered search systems
+## Additional Python Foundations
+
+### Google Colab
+- Cloud-based Python environment
+- No installation required
+- Automatically saves work to Google Drive
+- Supports collaboration and free GPU/TPU access
+
+### Important Libraries
+- Pandas: data analysis and tabular data
+- NumPy: numerical computing and arrays
+- TensorFlow: machine learning and deep learning
+
+### Python Data Structures
+- Lists: ordered and changeable collections
+- Tuples: ordered and unchangeable collections
+- Sets: unordered collections of unique values
+- Dictionaries: key-value pairs for storing structured information
+
+### Control Flow
+- Conditional statements:
+  - if
+  - if-else
+  - if-elif-else
+
+- Loops:
+  - for loops
+  - while loops
+
+- Jump statements:
+  - break
+  - continue
+  - pass
+
+## Why This Matters for Document Processing
+
+Python data structures and control flow are essential for:
+- organizing extracted document information
+- looping through multiple files
+- storing metadata
+- cleaning and transforming text data
+- automating document processing pipelines
