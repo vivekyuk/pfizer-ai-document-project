@@ -36,6 +36,7 @@ def simple_analysis(text):
     print(f"Total words: {len(words)}")
     print(f"Preview: {' '.join(words[:30])}...")
 
+
 # -------------------------
 # 4. DOCUMENT STATISTICS
 # -------------------------
@@ -52,7 +53,30 @@ def document_statistics(text):
 
 
 # -------------------------
-# 5. MAIN PIPELINE
+# 5. TOP WORDS
+# -------------------------
+def top_words(text, n=5):
+    """Find the most common words."""
+    words = text.split()
+
+    word_counts = {}
+
+    for word in words:
+        word_counts[word] = word_counts.get(word, 0) + 1
+
+    sorted_words = sorted(
+        word_counts.items(),
+        key=lambda x: x[1],
+        reverse=True
+    )
+
+    print("\n--- MOST COMMON WORDS ---")
+    for word, count in sorted_words[:n]:
+        print(f"{word}: {count}")
+
+
+# -------------------------
+# 6. MAIN PIPELINE
 # -------------------------
 def main():
     file_path = "sample_output.txt"
@@ -62,5 +86,11 @@ def main():
 
     simple_analysis(cleaned_text)
     document_statistics(cleaned_text)
+    top_words(cleaned_text)
+
+
+# -------------------------
+# RUN PROGRAM
+# -------------------------
 if __name__ == "__main__":
     main()
