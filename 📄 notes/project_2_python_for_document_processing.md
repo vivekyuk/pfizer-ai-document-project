@@ -73,3 +73,40 @@ Python data structures and control flow are essential for:
 - storing metadata
 - cleaning and transforming text data
 - automating document processing pipelines
+## Python Fundamentals Continued
+
+### Functions
+Functions are reusable blocks of code that perform specific tasks.
+
+A function can:
+- Take inputs (parameters)
+- Perform operations
+- Return outputs
+
+Functions help make code:
+- More organized
+- Easier to reuse
+- Easier to maintain
+
+### Python Concepts Practiced
+- Variables and data types
+- Lists, tuples, sets, and dictionaries
+- Conditional statements
+- Loops (for and while)
+- Functions with inputs and outputs
+
+### Practice Exercises Completed
+- Convert Celsius to Fahrenheit
+- Check if a number is even or odd
+- Return the larger of two numbers
+- Calculate factorial using a loop
+- Reverse a string
+- Count vowels in a string
+
+### Why This Matters for Document Processing
+
+These programming fundamentals will later be used to:
+- Process large collections of documents
+- Clean and transform extracted text
+- Build reusable document-processing functions
+- Automate AI workflows
