@@ -110,3 +110,73 @@ These programming fundamentals will later be used to:
 - Clean and transform extracted text
 - Build reusable document-processing functions
 - Automate AI workflows
+---
+
+## Step 2: Data Preparation for AI Systems
+
+In this step, I learned how AI systems require clean, structured data in order to function correctly. Raw pharmaceutical documents are often messy, inconsistent, and unstructured, so preprocessing is essential before applying AI models.
+
+### Key Ideas Learned
+
+Data preparation includes:
+
+- Cleaning data (fixing errors, missing values, duplicates)
+- Transforming data (standardizing formats, encoding values)
+- Integrating multiple datasets
+- Splitting data into training and testing sets
+
+---
+
+## Structured vs Unstructured Data
+
+- Structured Data: CSV files, tables, databases (easy to analyze)
+- Unstructured Data: PDFs, scanned documents, handwritten notes (requires preprocessing and OCR)
+
+Pharmaceutical documents often fall into unstructured data, making preprocessing critical.
+
+---
+
+## Pandas (Data Handling Library)
+
+Pandas is a Python library used for working with structured data.
+
+Key abilities:
+- Load datasets (CSV, Excel, etc.)
+- Clean missing values
+- Filter and sort data
+- Perform analysis efficiently
+
+Example operations:
+- df.head()
+- df.info()
+- df.fillna()
+- df.dropna()
+
+---
+
+## JSON Data Handling
+
+JSON is a common format used in APIs and AI systems.
+
+Python can:
+- Convert JSON → Python dictionary (json.loads)
+- Convert Python → JSON (json.dumps)
+- Read JSON files (json.load)
+- Write JSON files (json.dump)
+
+JSON is widely used in:
+- APIs
+- Databases
+- Machine learning pipelines
+- Document processing systems
+
+---
+
+## Why This Matters
+
+These skills are essential for AI-powered document processing because:
+
+- Real-world data is messy and inconsistent
+- AI models require structured input
+- Cleaning improves model accuracy
+- JSON and Pandas are standard tools in industry pipelines
