@@ -76,17 +76,43 @@ def top_words(text, n=5):
 
 
 # -------------------------
-# 6. MAIN PIPELINE
+# 6. STRUCTURED SUMMARY
+# -------------------------
+def build_summary(text):
+    """Creates a structured summary for AI-ready document processing."""
+
+    words = text.split()
+
+    summary = {
+        "word_count": len(words),
+        "character_count": len(text),
+        "sentence_count": text.count(".") + text.count("!") + text.count("?"),
+        "sample_words": words[:10]
+    }
+
+    return summary
+
+
+# -------------------------
+# 7. MAIN PIPELINE
 # -------------------------
 def main():
     file_path = "sample_output.txt"
 
+    # Load + clean
     text = load_document(file_path)
     cleaned_text = clean_text(text)
 
+    # Analysis
     simple_analysis(cleaned_text)
     document_statistics(cleaned_text)
     top_words(cleaned_text)
+
+    # Structured output (AI-ready)
+    summary = build_summary(cleaned_text)
+
+    print("\n--- STRUCTURED SUMMARY ---")
+    print(summary)
 
 
 # -------------------------
