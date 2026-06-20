@@ -3,6 +3,10 @@
 # Simple Document Processor
 # =========================
 
+import pandas as pd
+import json
+import re
+
 
 # -------------------------
 # 1. LOAD DOCUMENT
@@ -94,7 +98,55 @@ def build_summary(text):
 
 
 # -------------------------
-# 7. MAIN PIPELINE
+# 7. STEP 2 DEMOS (PANDAS + JSON + TEXT CLEANING)
+# -------------------------
+def pandas_demo():
+    """Demonstrates basic Pandas data cleaning."""
+
+    data = {
+        "Name": ["Alice", "Bob", None, "David"],
+        "Age": [25, None, 30, 22],
+        "Score": [85, 90, 88, None]
+    }
+
+    df = pd.DataFrame(data)
+
+    print("\n--- PANDAS DEMO ---")
+    print(df)
+
+    df["Age"] = df["Age"].fillna(df["Age"].mean())
+    df["Score"] = df["Score"].fillna(df["Score"].mean())
+
+    print("\nAfter Cleaning:")
+    print(df)
+
+
+def json_demo():
+    """Demonstrates basic JSON handling."""
+
+    json_str = '{"patient": "John", "age": 45, "drug": "DrugA"}'
+    data = json.loads(json_str)
+
+    print("\n--- JSON DEMO ---")
+    print("Patient:", data["patient"])
+    print("Drug:", data["drug"])
+
+
+def text_cleaning_demo():
+    """Demonstrates simple text cleaning techniques."""
+
+    text = "  HELLO!!! Patient ID: PT001 @@ needs review...   "
+
+    text = text.lower()
+    text = re.sub(r'\s+', ' ', text).strip()
+    text = re.sub(r'[@#]', '', text)
+
+    print("\n--- TEXT CLEANING DEMO ---")
+    print(text)
+
+
+# -------------------------
+# 8. MAIN PIPELINE
 # -------------------------
 def main():
     file_path = "sample_output.txt"
@@ -103,16 +155,21 @@ def main():
     text = load_document(file_path)
     cleaned_text = clean_text(text)
 
-    # Analysis
+    # Core analysis
     simple_analysis(cleaned_text)
     document_statistics(cleaned_text)
     top_words(cleaned_text)
 
-    # Structured output (AI-ready)
+    # Structured output
     summary = build_summary(cleaned_text)
 
     print("\n--- STRUCTURED SUMMARY ---")
     print(summary)
+
+    # Step 2 demos
+    pandas_demo()
+    json_demo()
+    text_cleaning_demo()
 
 
 # -------------------------
