@@ -337,3 +337,69 @@ Detect structured information
 Improve pharmaceutical document analysis
 Reduce OCR errors caused by blurry or noisy scans
 
+## Step 3: Image Processing for AI & OCR
+
+In this step, I learned how computers process images as pixel matrices and how image preprocessing improves OCR (Optical Character Recognition) performance in real-world document systems.
+
+Raw images often contain noise, blur, low contrast, and misalignment, which can reduce AI accuracy. To fix this, I applied preprocessing techniques using OpenCV.
+
+---
+
+## Key Techniques Learned
+
+### 1. Grayscale Conversion
+Converts images into a single intensity channel to simplify processing.
+
+### 2. Noise Reduction
+Removes random speckles and artifacts using Non-Local Means Denoising.
+
+### 3. Blurring
+Smooths the image using Gaussian Blur to reduce small imperfections.
+
+### 4. Contrast Enhancement
+Improves readability of faint text using histogram equalization.
+
+### 5. Thresholding (Binarization)
+Converts images into black-and-white format for better OCR accuracy.
+
+---
+
+## Why This Matters for Document Processing
+
+These techniques are essential for AI-powered document systems because:
+
+- Scanned documents are often noisy or blurry
+- OCR models perform better on clean, high-contrast images
+- Preprocessing increases text extraction accuracy
+- Helps automate document digitization in real-world systems
+
+---
+
+## Code Used (OpenCV Pipeline)
+
+```python
+import cv2
+import matplotlib.pyplot as plt
+
+image_path = "noisy_image_sample.jpg"
+image = cv2.imread(image_path)
+
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+denoised = cv2.fastNlMeansDenoising(gray, None, 30, 7, 21)
+
+blurred = cv2.GaussianBlur(denoised, (5, 5), 0)
+
+enhanced = cv2.equalizeHist(blurred)
+
+processed = cv2.adaptiveThreshold(
+    enhanced,
+    255,
+    cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+    cv2.THRESH_BINARY,
+    11,
+    2
+)
+
+cv2.imwrite("cleaned_image.png", processed)
+
