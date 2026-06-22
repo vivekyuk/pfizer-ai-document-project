@@ -271,5 +271,69 @@ These skills are essential for AI-powered document processing because:
 - Real-world data is messy and inconsistent  
 - AI models require structured input  
 - Cleaning improves model accuracy  
-- Proper preprocessing ensures reliable analysis of pharmaceutical documents  
+- Proper preprocessing ensures reliable analysis of pharmaceutical documents
+
+Step 3: Image Processing for AI Document Analysis
+
+In this step, I learned how AI systems process and enhance images before performing OCR (Optical Character Recognition) and document analysis.
+
+Key Concepts Learned
+
+Computers interpret images as numerical pixel matrices:
+
+Grayscale images use values from 0–255
+Color images use RGB/BGR channels
+Images can be represented as NumPy arrays
+Common Document Image Problems
+
+Real-world scanned documents often contain:
+
+Noise and grain
+Low contrast
+Blurry text
+Skewed alignment
+Background shadows or stains
+
+These issues reduce OCR accuracy and AI performance.
+
+Image Processing Libraries
+OpenCV (cv2)
+
+Used for:
+
+Advanced image preprocessing
+OCR preparation
+Thresholding
+Denoising
+Contrast enhancement
+Pillow (PIL)
+
+Used for:
+
+Simple image editing
+Cropping
+Rotating
+Resizing
+Saving images
+NumPy
+
+Used for:
+
+Pixel-level image manipulation
+Matrix operations
+Efficient numerical processing
+Basic Image Processing Operations
+Resize images
+Crop important regions
+Rotate and align documents
+Convert images to grayscale
+Save processed outputs
+Why This Matters for Document Processing
+
+These techniques are important because AI systems and OCR models require clean, readable images to:
+
+Extract text accurately
+Detect structured information
+Improve pharmaceutical document analysis
+Reduce OCR errors caused by blurry or noisy scans
 
