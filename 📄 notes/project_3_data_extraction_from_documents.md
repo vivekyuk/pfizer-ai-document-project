@@ -98,3 +98,81 @@ reader = PdfReader("sample.pdf")
 page = reader.pages[0]
 
 print(page.extract_text())
+# Project 3: Data Extraction from Documents Using Python (Step 1)
+
+## Goal of This Step
+In this step, I learned how to extract text and layout information from PDF documents using Python libraries. The focus was on understanding how unstructured pharmaceutical documents can be converted into machine-readable formats.
+
+---
+
+## Why PDF Extraction Matters in Pharma
+
+Pharmaceutical compliance documents (SDFs) often contain:
+- Manufacturing dates
+- Vendor names
+- Revision dates
+- Compliance information
+
+These are often hidden across multi-page PDFs, making manual extraction slow and error-prone. Python helps automate this process.
+
+---
+
+## Libraries Used
+
+### PyPDF2
+- Simple text extraction
+- No layout or position data
+- Best for basic PDFs
+
+### pdfplumber
+- Better structured text extraction
+- Strong table detection
+- Useful for semi-structured documents
+
+### PyMuPDF (fitz)
+- Most powerful tool in this step
+- Extracts:
+  - Text
+  - Word positions (bounding boxes)
+  - Block-level structure
+- Best for AI-driven document processing
+
+---
+
+## Key Concept: Bounding Boxes
+
+Bounding boxes represent the position of each word on a page using coordinates:
+(x0, y0, x1, y1)
+
+This allows AI systems to:
+- Understand document layout
+- Match labels with values (e.g., "Effective Date → 03-Jun-2025")
+- Work with multi-column or complex PDFs
+
+---
+
+## Key Takeaways
+
+- PDFs are not just text—they are structured layouts
+- PyMuPDF is the most powerful library for spatial text extraction
+- Bounding boxes are essential for AI document understanding
+- Different libraries serve different purposes depending on document complexity
+
+---
+
+## Why This Matters for AI Systems
+
+This step builds the foundation for:
+- Automated document extraction pipelines
+- Pharmaceutical compliance checks
+- AI-powered data structuring
+- Field extraction using regex and heuristics
+
+---
+
+## Next Step Preview
+
+In Step 2, I will:
+- Extract specific fields using regex
+- Identify dates, vendor names, and document types
+- Build rule-based extraction logic for SDF documents
