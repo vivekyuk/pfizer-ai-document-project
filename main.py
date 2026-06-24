@@ -83,6 +83,7 @@ def top_words(text, n=5):
 # -------------------------
 def build_summary(text):
     """Creates a structured summary for AI-ready document processing."""
+
     words = text.split()
 
     summary = {
@@ -96,10 +97,11 @@ def build_summary(text):
 
 
 # -------------------------
-# 7. STEP 2 DEMOS (PANDAS + JSON + TEXT CLEANING)
+# 7. STEP 2 DEMOS
 # -------------------------
 def pandas_demo():
     """Demonstrates basic Pandas data cleaning."""
+
     data = {
         "Name": ["Alice", "Bob", None, "David"],
         "Age": [25, None, 30, 22],
@@ -120,6 +122,7 @@ def pandas_demo():
 
 def json_demo():
     """Demonstrates basic JSON handling."""
+
     json_str = '{"patient": "John", "age": 45, "drug": "DrugA"}'
     data = json.loads(json_str)
 
@@ -130,6 +133,7 @@ def json_demo():
 
 def text_cleaning_demo():
     """Demonstrates simple text cleaning techniques."""
+
     text = "  HELLO!!! Patient ID: PT001 @@ needs review...   "
 
     text = text.lower()
@@ -141,7 +145,7 @@ def text_cleaning_demo():
 
 
 # -------------------------
-# 8. STEP 3: IMAGE PROCESSING CONCEPTS
+# 8. STEP 3: IMAGE PROCESSING
 # -------------------------
 def image_processing_summary():
     """Displays image preprocessing concepts used in AI systems."""
@@ -151,18 +155,70 @@ def image_processing_summary():
     concepts = [
         "Grayscale conversion",
         "Noise reduction (denoising)",
-        "Blurring for smoothing",
+        "Gaussian blur for smoothing",
         "Contrast enhancement",
-        "Thresholding for OCR (binarization)",
-        "Image preprocessing for document AI pipelines"
+        "Adaptive thresholding",
+        "OCR preprocessing pipelines",
+        "Document image enhancement"
     ]
 
     for concept in concepts:
         print(f"- {concept}")
 
 
+def image_preprocessing_pipeline():
+    """Simulates image preprocessing workflow."""
+
+    print("\n--- IMAGE PREPROCESSING PIPELINE ---")
+
+    steps = [
+        "Load scanned document image",
+        "Convert image to grayscale",
+        "Apply denoising filter",
+        "Apply Gaussian blur",
+        "Enhance contrast",
+        "Apply adaptive thresholding",
+        "Generate OCR-ready image"
+    ]
+
+    for step_number, step in enumerate(steps, start=1):
+        print(f"Step {step_number}: {step}")
+
+
 # -------------------------
-# 9. MAIN PIPELINE
+# 9. STEP 4: PDF EXTRACTION CONCEPTS
+# -------------------------
+def pdf_extraction_summary():
+    """Displays PDF extraction concepts."""
+
+    print("\n--- PDF EXTRACTION LIBRARIES ---")
+
+    libraries = {
+        "PyPDF2": "Basic PDF text extraction",
+        "pdfplumber": "Table and structured data extraction",
+        "PyMuPDF": "Text + bounding box extraction"
+    }
+
+    for library, purpose in libraries.items():
+        print(f"{library}: {purpose}")
+
+
+def bounding_box_demo():
+    """Demonstrates bounding box extraction concepts."""
+
+    print("\n--- BOUNDING BOX EXTRACTION ---")
+
+    sample_data = {
+        "text": "Effective Date: 03-Jun-2025",
+        "bounding_box": [120, 200, 350, 230]
+    }
+
+    print("Extracted Text:", sample_data["text"])
+    print("Bounding Box Coordinates:", sample_data["bounding_box"])
+
+
+# -------------------------
+# 10. MAIN PIPELINE
 # -------------------------
 def main():
     file_path = "sample_output.txt"
@@ -187,9 +243,20 @@ def main():
     json_demo()
     text_cleaning_demo()
 
-    # Step 3 concepts
+    # Step 3 demos
     image_processing_summary()
+    image_preprocessing_pipeline()
 
+    # Step 4 demos
+    pdf_extraction_summary()
+    bounding_box_demo()
+
+
+# -------------------------
+# RUN PROGRAM
+# -------------------------
+if __name__ == "__main__":
+    main()
 
 # -------------------------
 # RUN PROGRAM
