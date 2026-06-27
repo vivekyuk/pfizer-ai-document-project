@@ -97,59 +97,57 @@ def build_summary(text):
 
 
 # -------------------------
-# 7. STEP 2 DEMOS
+# 7. STEP 2: REGEX FIELD EXTRACTION (NEW)
 # -------------------------
-def pandas_demo():
-    """Demonstrates basic Pandas data cleaning."""
+def extract_fields(text):
+    """Extract key compliance fields using regex + anchor logic."""
 
-    data = {
-        "Name": ["Alice", "Bob", None, "David"],
-        "Age": [25, None, 30, 22],
-        "Score": [85, 90, 88, None]
-    }
+    results = {}
 
-    df = pd.DataFrame(data)
+    # -------------------------
+    # DATES (multiple formats)
+    # -------------------------
+    date_patterns = [
+        r"\d{2}-[A-Za-z]{3}-\d{4}",   # 03-Jun-2025
+        r"\d{2}\s+[A-Z]{3}\s+\d{4}",  # 21 MAR 2025
+        r"\d{4}-\d{2}-\d{2}"          # 2025-06-03
+    ]
 
-    print("\n--- PANDAS DEMO ---")
-    print(df)
+    dates = []
+    for pattern in date_patterns:
+        dates.extend(re.findall(pattern, text))
 
-    df["Age"] = df["Age"].fillna(df["Age"].mean())
-    df["Score"] = df["Score"].fillna(df["Score"].mean())
+    results["dates"] = dates
 
-    print("\nAfter Cleaning:")
-    print(df)
+    # -------------------------
+    # VENDOR (ANCHOR-BASED)
+    # -------------------------
+    vendor_match = re.search(r"vendor[:\-]?\s*([a-zA-Z0-9 &.,]+)", text)
+    results["vendor"] = vendor_match.group(1).strip() if vendor_match else None
 
+    # -------------------------
+    # DOCUMENT ID
+    # -------------------------
+    doc_id_match = re.search(r"DOC-\d{4}-\d{4}", text)
+    results["document_id"] = doc_id_match.group() if doc_id_match else None
 
-def json_demo():
-    """Demonstrates basic JSON handling."""
+    # -------------------------
+    # EMAILS
+    # -------------------------
+    results["emails"] = re.findall(r"[\w\.-]+@[\w\.-]+\.\w+", text)
 
-    json_str = '{"patient": "John", "age": 45, "drug": "DrugA"}'
-    data = json.loads(json_str)
+    # -------------------------
+    # PHONE NUMBERS
+    # -------------------------
+    results["phones"] = re.findall(r"\+?\d[\d\s().-]{9,}", text)
 
-    print("\n--- JSON DEMO ---")
-    print("Patient:", data["patient"])
-    print("Drug:", data["drug"])
-
-
-def text_cleaning_demo():
-    """Demonstrates simple text cleaning techniques."""
-
-    text = "  HELLO!!! Patient ID: PT001 @@ needs review...   "
-
-    text = text.lower()
-    text = re.sub(r'\s+', ' ', text).strip()
-    text = re.sub(r'[@#]', '', text)
-
-    print("\n--- TEXT CLEANING DEMO ---")
-    print(text)
+    return results
 
 
 # -------------------------
 # 8. STEP 3: IMAGE PROCESSING
 # -------------------------
 def image_processing_summary():
-    """Displays image preprocessing concepts used in AI systems."""
-
     print("\n--- IMAGE PROCESSING CONCEPTS ---")
 
     concepts = [
@@ -167,8 +165,6 @@ def image_processing_summary():
 
 
 def image_preprocessing_pipeline():
-    """Simulates image preprocessing workflow."""
-
     print("\n--- IMAGE PREPROCESSING PIPELINE ---")
 
     steps = [
@@ -181,44 +177,39 @@ def image_preprocessing_pipeline():
         "Generate OCR-ready image"
     ]
 
-    for step_number, step in enumerate(steps, start=1):
-        print(f"Step {step_number}: {step}")
+    for i, step in enumerate(steps, 1):
+        print(f"Step {i}: {step}")
 
 
 # -------------------------
 # 9. STEP 4: PDF EXTRACTION CONCEPTS
 # -------------------------
 def pdf_extraction_summary():
-    """Displays PDF extraction concepts."""
-
     print("\n--- PDF EXTRACTION LIBRARIES ---")
 
     libraries = {
         "PyPDF2": "Basic PDF text extraction",
-        "pdfplumber": "Table and structured data extraction",
+        "pdfplumber": "Table and structured extraction",
         "PyMuPDF": "Text + bounding box extraction"
     }
 
-    for library, purpose in libraries.items():
-        print(f"{library}: {purpose}")
+    for lib, desc in libraries.items():
+        print(f"{lib}: {desc}")
 
 
 def bounding_box_demo():
-    """Demonstrates bounding box extraction concepts."""
+    print("\n--- BOUNDING BOX EXAMPLE ---")
 
-    print("\n--- BOUNDING BOX EXTRACTION ---")
-
-    sample_data = {
+    sample = {
         "text": "Effective Date: 03-Jun-2025",
-        "bounding_box": [120, 200, 350, 230]
+        "bbox": [120, 200, 350, 230]
     }
 
-    print("Extracted Text:", sample_data["text"])
-    print("Bounding Box Coordinates:", sample_data["bounding_box"])
+    print(sample)
 
 
 # -------------------------
-# 10. MAIN PIPELINE
+# 10. MAIN PIPELINE (UPDATED)
 # -------------------------
 def main():
     file_path = "sample_output.txt"
@@ -232,16 +223,18 @@ def main():
     document_statistics(cleaned_text)
     top_words(cleaned_text)
 
-    # Structured output
+    # Structured summary
     summary = build_summary(cleaned_text)
 
     print("\n--- STRUCTURED SUMMARY ---")
     print(summary)
 
-    # Step 2 demos
-    pandas_demo()
-    json_demo()
-    text_cleaning_demo()
+    # -------------------------
+    # STEP 2 OUTPUT (NEW)
+    # -------------------------
+    print("\n--- STEP 2: FIELD EXTRACTION (REGEX) ---")
+    fields = extract_fields(cleaned_text)
+    print(fields)
 
     # Step 3 demos
     image_processing_summary()
