@@ -176,3 +176,65 @@ In Step 2, I will:
 - Extract specific fields using regex
 - Identify dates, vendor names, and document types
 - Build rule-based extraction logic for SDF documents
+Step 2: Identifying Fields Using Regex and Anchor Phrases
+
+In this step, the goal is to convert raw extracted PDF text into structured fields such as vendor names, dates, document IDs, emails, and phone numbers. Instead of manually reading documents, pattern-based extraction is used to automatically identify important compliance information.
+
+Why Regex Matters in Pharmaceutical Documents
+
+Pharmaceutical SDFs are often messy and inconsistent:
+
+Dates appear in multiple formats (03-Jun-2025, 21 MAR 2025)
+Labels are not standardized (Vendor:, VENDOR -, etc.)
+Important information may be buried in paragraphs or tables
+
+Regex solves this by focusing on patterns instead of formatting, making it effective for real-world document extraction.
+
+Anchor Phrase Strategy
+
+Anchor phrases are fixed labels used to locate important values in text.
+
+Example:
+Vendor: West Pharmaceutical Services
+
+Here:
+
+Vendor: is the anchor phrase
+West Pharmaceutical Services is the extracted value
+
+This improves accuracy when document layouts vary.
+
+What is Parsing
+
+Parsing is the process of converting unstructured text into structured data.
+
+Before:
+West Pharma, document dated 21 MAR 2025, revision 11
+
+After:
+{
+"vendor": "West Pharma",
+"date": "21 MAR 2025",
+"revision": "11"
+}
+
+This structured format is used in compliance systems for automation and analysis.
+
+Key Challenges in Step 2
+Multiple date formats in the same document
+Broken text across lines in PDFs
+Overmatching or incorrect regex patterns
+Missing or inconsistent anchor phrases
+Noise from headers, footers, and scanned content
+Real-World Use Case (Pfizer Context)
+
+This step is used in pharmaceutical compliance workflows to:
+
+Extract vendor metadata automatically
+Identify manufacturing, effective, and revision dates
+Flag outdated documents older than 3–4 years
+Reduce manual document review time
+Enable scalable compliance processing pipelines
+Key Takeaway
+
+Regex combined with anchor phrases allows unstructured pharmaceutical documents to be converted into structured, machine-readable data that can be validated and used in automation systems.
