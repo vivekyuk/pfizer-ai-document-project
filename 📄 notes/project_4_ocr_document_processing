@@ -122,3 +122,67 @@ Common OCR corrections:
 - Visualize OCR results with bounding boxes.
 - Prepare OCR data for AI and document automation pipelines.
 - Transform unstructured scanned documents into structured machine-readable data.
+## Project 4: Real-World Pharmaceutical SDF Analysis
+
+### Task Objective
+- Applied the complete OCR pipeline to a real scanned pharmaceutical Supporting Documentation File (SDF).
+- Extracted important document information including:
+  - Vendor/Manufacturer name
+  - Product name and product code
+  - Lot/Batch numbers
+  - Dates
+  - Document type
+  - Signature information
+  - Document reference numbers
+
+### Full OCR Processing Workflow
+1. Loaded scanned pharmaceutical PDF into the OCR pipeline.
+2. Applied image preprocessing to improve document quality.
+3. Used Tesseract OCR to extract text from the scanned document.
+4. Cleaned OCR output and corrected recognition errors.
+5. Used regex patterns to locate important pharmaceutical fields.
+6. Used bounding boxes to identify the location of extracted information.
+7. Converted extracted fields into structured JSON format for AI processing.
+
+## Pharmaceutical SDF Field Extraction
+- Built regex-based extraction logic to identify key fields:
+  - Vendor/Manufacturer
+  - Product Name
+  - Product Code
+  - Lot Number
+  - Document Type
+  - Signature Date
+  - Signatory Name
+  - Document Reference Number
+
+### Why Structured Extraction is Important
+- Raw OCR text does not preserve document structure.
+- Structured extraction allows AI systems to understand relationships between fields.
+- Enables automated document review and data processing.
+
+## Challenges During Real-World OCR Extraction
+- The biggest challenge was handling document layout and formatting.
+- Although the document was readable by humans, OCR struggled with:
+  - Correct ordering of text sections.
+  - Connecting labels with their corresponding values.
+  - Extracting information from signatures and reference fields.
+  - Maintaining relationships between dates and document sections.
+- Additional cleaning, regex extraction, and bounding box localization were needed to create structured output.
+
+## AI-Ready Document Processing Pipeline
+Final workflow:
+
+Scanned PDF  
+→ Image Preprocessing  
+→ Tesseract OCR  
+→ Text Cleaning  
+→ Field Extraction  
+→ Bounding Box Localization  
+→ JSON Structured Output  
+
+## Skills Learned From SDF Analysis
+- Apply OCR techniques to real pharmaceutical documents.
+- Extract structured information from unstructured text.
+- Handle OCR errors through cleaning and pattern matching.
+- Use bounding boxes to connect extracted text with document locations.
+- Prepare document data for AI models and automation workflows.
