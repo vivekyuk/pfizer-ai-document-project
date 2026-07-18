@@ -244,6 +244,46 @@ def main():
     pdf_extraction_summary()
     bounding_box_demo()
 
+    # -------------------------
+    # STEP 2 OUTPUT (NEW)
+    # -------------------------
+    print("\n--- STEP 2: FIELD EXTRACTION (REGEX) ---")
+    fields = extract_fields(cleaned_text)
+    print(fields)
+
+    # Step 3 demos
+    image_processing_summary()
+    image_preprocessing_pipeline()
+
+    # Step 4 demos
+    pdf_extraction_summary()
+    bounding_box_demo()
+
+
+    # -------------------------
+    # PROJECT 4: SDF OCR EXTRACTION
+    # -------------------------
+
+    print("\n--- PHARMACEUTICAL SDF EXTRACTION ---")
+
+    sdf_fields = extract_sdf_fields(cleaned_text)
+
+    print(sdf_fields)
+
+
+    print("\n--- AI READY JSON OUTPUT ---")
+
+    json_output = create_json_output(sdf_fields)
+
+    print(json_output)
+
+
+    print("\n--- OCR BOUNDING BOX DATA ---")
+
+    bbox_data = create_bounding_box_data()
+
+    print(json.dumps(bbox_data, indent=4))
+
 
 # -------------------------
 # RUN PROGRAM
