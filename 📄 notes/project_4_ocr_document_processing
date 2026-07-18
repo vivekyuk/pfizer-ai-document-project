@@ -1,1 +1,57 @@
+# Project 4 - OCR for Scanned Pharmaceutical Documents
 
+## Overview
+- Learned how OCR (Optical Character Recognition) converts images of text into machine-readable text.
+- Focused on scanned pharmaceutical Supplier Data Files (SDFs), where normal PDF text extraction does not work.
+- Prepared scanned documents for OCR by improving image quality before text recognition.
+
+## Key Concepts
+
+### Why OCR is Needed
+- Scanned PDFs contain images instead of selectable text.
+- Standard PDF extraction methods like PyMuPDF's `get_text()` return little or no text.
+- OCR converts image pixels into readable text.
+
+### Libraries Used
+- PyMuPDF (fitz) – Load PDFs and convert pages into images.
+- Tesseract OCR – Extract text from scanned images.
+- OpenCV – Image preprocessing and enhancement.
+- Pillow (PIL) – Display and manipulate images.
+- NumPy – Image array processing.
+
+### OCR Preprocessing Pipeline
+1. Load scanned PDF.
+2. Attempt normal text extraction.
+3. Convert PDF page into an image.
+4. Convert image to grayscale.
+5. Apply adaptive thresholding to improve contrast.
+6. Reduce image noise using bilateral filtering.
+7. Resize image to improve OCR accuracy.
+8. Rotate images when necessary before OCR.
+
+### Image Processing Techniques
+- Grayscale conversion
+- Adaptive thresholding
+- Bilateral filtering
+- Image resizing
+- Image rotation
+
+## Why Preprocessing Matters
+- Improves OCR accuracy.
+- Removes background noise.
+- Makes faint text easier to recognize.
+- Produces cleaner input for downstream document intelligence pipelines.
+
+## Real-World Applications
+- Pharmaceutical Supplier Data Files (SDFs)
+- Certificates of Analysis
+- Compliance documents
+- Vendor records
+- Batch documentation
+
+## Skills Learned
+- Differentiate searchable PDFs from scanned PDFs.
+- Convert PDF pages into images.
+- Prepare images for OCR.
+- Understand the role of preprocessing in document intelligence.
+- Build the foundation for OCR-based data extraction.
