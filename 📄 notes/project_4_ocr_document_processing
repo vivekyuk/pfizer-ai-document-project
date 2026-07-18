@@ -55,3 +55,70 @@
 - Prepare images for OCR.
 - Understand the role of preprocessing in document intelligence.
 - Build the foundation for OCR-based data extraction.
+
+## Tesseract OCR Extraction
+- Used Tesseract OCR to convert processed scanned images into editable text.
+- Applied optimized OCR settings:
+  - `--oem 3` → Uses Tesseract's LSTM-based AI OCR engine.
+  - `-l eng` → Specifies English text recognition.
+- Learned that OCR output requires cleaning because scanned documents can produce character mistakes, missing text, and formatting issues.
+
+## OCR Text Cleaning
+- Cleaned OCR output by:
+  - Removing extra spaces and unnecessary line breaks.
+  - Fixing common OCR mistakes using regular expressions.
+  - Removing unwanted symbols and formatting errors.
+
+Common OCR corrections:
+- `L0T` → `LOT`
+- `C0A` → `COA`
+- `CERT1FICATE` → `CERTIFICATE`
+- `EXP1RATION` → `EXPIRATION`
+
+## Extracting Key Pharmaceutical Information
+- Used regular expressions (`re.search()` and `re.findall()`) to automatically extract important fields.
+- Extracted information such as:
+  - Gamma Process Run ID
+  - Product Lot Number
+  - Minimum Specified Dose
+  - Minimum Delivered Dose
+  - Maximum Specified Dose
+  - Maximum Delivered Dose
+
+## OCR Bounding Boxes
+- Used `pytesseract.image_to_data()` to extract:
+  - Detected words.
+  - Word coordinates.
+  - Bounding box dimensions.
+  - OCR confidence scores.
+- Created visual bounding boxes around detected words using OpenCV.
+- Bounding boxes help verify OCR accuracy and locate information within documents.
+
+## Key Field Highlighting
+- Filtered OCR results to highlight only important pharmaceutical terms instead of all detected words.
+- Highlighted fields such as:
+  - CERTIFICATE
+  - LOT
+  - BATCH
+  - VENDOR
+  - EXPIRATION
+  - DATE
+  - COA
+  - MANUFACTURER
+- Improved matching by using partial matching to detect OCR variations.
+
+## Structuring OCR Data for AI Models
+- Converted extracted OCR information into JSON format.
+- Stored:
+  - Extracted field names.
+  - Text values.
+  - Bounding box coordinates.
+  - Confidence scores.
+- Learned that AI models require structured data rather than raw OCR text for tasks like document classification and automated information extraction.
+
+## Additional Skills Learned
+- Clean OCR output for better accuracy.
+- Use regex for automated information extraction.
+- Visualize OCR results with bounding boxes.
+- Prepare OCR data for AI and document automation pipelines.
+- Transform unstructured scanned documents into structured machine-readable data.
