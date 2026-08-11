@@ -186,3 +186,68 @@ Scanned PDF
 - Handle OCR errors through cleaning and pattern matching.
 - Use bounding boxes to connect extracted text with document locations.
 - Prepare document data for AI models and automation workflows.
+## Layout-Aware OCR
+
+* Explored layout-aware OCR techniques for extracting information from complex pharmaceutical documents.
+* Compared three OCR engines:
+
+  * Tesseract — lightweight and effective for clean documents, but limited with complex layouts.
+  * PaddleOCR — powerful for dense, structured documents and provides detailed text-location information.
+  * EasyOCR — lightweight and easy to set up, especially for scanned forms and field-based documents.
+
+## PaddleOCR
+
+* Used PaddleOCR to detect text in pharmaceutical SDF documents.
+* Converted PDF pages into high-resolution images using `pdf2image`.
+* Extracted:
+
+  * Detected text.
+  * OCR confidence scores.
+  * Polygon-based bounding box coordinates.
+* Used OpenCV to draw bounding boxes around detected text.
+* Visualized OCR results to verify text detection and document structure.
+* Tested PaddleOCR on documents containing:
+
+  * Multiple columns.
+  * Dense text.
+  * Tables and form fields.
+  * Rotated or skewed text.
+
+## EasyOCR
+
+* Used EasyOCR to extract text from pharmaceutical SDF documents.
+* Converted PDF pages into images before performing OCR.
+* Extracted:
+
+  * Detected text segments.
+  * Bounding box coordinates.
+  * Confidence scores.
+* Used `PIL.ImageDraw` to visualize detected text regions.
+* Compared EasyOCR results against PaddleOCR and Tesseract outputs.
+
+## OCR Engine Comparison
+
+* Compared Tesseract, PaddleOCR, and EasyOCR using the same pharmaceutical documents.
+* Evaluated each OCR engine based on:
+
+  * Accuracy — ability to correctly identify important pharmaceutical information.
+  * Layout Awareness — ability to preserve relationships between labels, values, tables, and sections.
+  * Ease of Use — installation, setup, and execution in Google Colab.
+  * Output Quality — availability of bounding boxes, confidence scores, and structured information.
+* Observed differences in how each engine handles complex pharmaceutical document layouts.
+* Evaluated which OCR approach would be most useful for downstream information extraction and AI processing.
+
+## OCR Visualization
+
+* Created annotated document images to visually inspect OCR performance.
+* Used bounding boxes and confidence scores to identify correctly detected text and potential OCR errors.
+* Used visual verification to compare how different OCR engines interpret the same document.
+
+## Key Takeaways
+
+* Basic OCR can extract text effectively from clean documents but may lose important layout information.
+* Layout-aware OCR provides spatial information that is useful for extracting structured pharmaceutical data.
+* PaddleOCR is well suited for complex, layout-heavy documents.
+* EasyOCR provides a simpler and faster approach for straightforward forms and scanned documents.
+* OCR engine selection should depend on document complexity, required accuracy, layout requirements, and downstream processing needs.
+
