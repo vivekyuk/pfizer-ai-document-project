@@ -7,9 +7,11 @@ import pandas as pd
 import json
 import re
 
+
 # -------------------------
 # 1. LOAD DOCUMENT
 # -------------------------
+
 def load_document(file_path):
     """Reads a text file and returns its content."""
     with open(file_path, "r", encoding="utf-8") as file:
@@ -20,6 +22,7 @@ def load_document(file_path):
 # -------------------------
 # 2. CLEAN TEXT
 # -------------------------
+
 def clean_text(text):
     """Basic cleaning of text."""
     text = text.lower()
@@ -31,6 +34,7 @@ def clean_text(text):
 # -------------------------
 # 3. ANALYSIS
 # -------------------------
+
 def simple_analysis(text):
     """Basic analysis: word count + preview."""
     words = text.split()
@@ -43,6 +47,7 @@ def simple_analysis(text):
 # -------------------------
 # 4. DOCUMENT STATISTICS
 # -------------------------
+
 def document_statistics(text):
     """Calculate basic document statistics."""
     words = text.split()
@@ -58,6 +63,7 @@ def document_statistics(text):
 # -------------------------
 # 5. TOP WORDS
 # -------------------------
+
 def top_words(text, n=5):
     """Find the most common words."""
     words = text.split()
@@ -81,6 +87,7 @@ def top_words(text, n=5):
 # -------------------------
 # 6. STRUCTURED SUMMARY
 # -------------------------
+
 def build_summary(text):
     """Creates a structured summary for AI-ready document processing."""
 
@@ -97,16 +104,18 @@ def build_summary(text):
 
 
 # -------------------------
-# 7. STEP 2: REGEX FIELD EXTRACTION (NEW)
+# 7. STEP 2: REGEX FIELD EXTRACTION
 # -------------------------
+
 def extract_fields(text):
     """Extract key compliance fields using regex + anchor logic."""
 
     results = {}
 
     # -------------------------
-    # DATES (multiple formats)
+    # DATES
     # -------------------------
+
     date_patterns = [
         r"\d{2}-[A-Za-z]{3}-\d{4}",   # 03-Jun-2025
         r"\d{2}\s+[A-Z]{3}\s+\d{4}",  # 21 MAR 2025
@@ -114,32 +123,59 @@ def extract_fields(text):
     ]
 
     dates = []
+
     for pattern in date_patterns:
         dates.extend(re.findall(pattern, text))
 
     results["dates"] = dates
 
     # -------------------------
-    # VENDOR (ANCHOR-BASED)
+    # VENDOR
     # -------------------------
-    vendor_match = re.search(r"vendor[:\-]?\s*([a-zA-Z0-9 &.,]+)", text)
-    results["vendor"] = vendor_match.group(1).strip() if vendor_match else None
+
+    vendor_match = re.search(
+        r"vendor[:\-]?\s*([a-zA-Z0-9 &.,]+)",
+        text
+    )
+
+    results["vendor"] = (
+        vendor_match.group(1).strip()
+        if vendor_match
+        else None
+    )
 
     # -------------------------
     # DOCUMENT ID
     # -------------------------
-    doc_id_match = re.search(r"DOC-\d{4}-\d{4}", text)
-    results["document_id"] = doc_id_match.group() if doc_id_match else None
+
+    doc_id_match = re.search(
+        r"DOC-\d{4}-\d{4}",
+        text
+    )
+
+    results["document_id"] = (
+        doc_id_match.group()
+        if doc_id_match
+        else None
+    )
 
     # -------------------------
     # EMAILS
     # -------------------------
-    results["emails"] = re.findall(r"[\w\.-]+@[\w\.-]+\.\w+", text)
+
+    results["emails"] = re.findall(
+        r"[\w\.-]+@[\w\.-]+\.\w+",
+        text
+    )
 
     # -------------------------
     # PHONE NUMBERS
     # -------------------------
-    results["phones"] = re.findall(r"\+?\d[\d\s().-]{9,}", text)
+
+    results["phones"] = re.findall(
+        r"\+?\d[\d\s().-]{9,}",
+        text
+    )
 
     return results
 
@@ -147,6 +183,7 @@ def extract_fields(text):
 # -------------------------
 # 8. STEP 3: IMAGE PROCESSING
 # -------------------------
+
 def image_processing_summary():
     print("\n--- IMAGE PROCESSING CONCEPTS ---")
 
@@ -184,6 +221,7 @@ def image_preprocessing_pipeline():
 # -------------------------
 # 9. STEP 4: PDF EXTRACTION CONCEPTS
 # -------------------------
+
 def pdf_extraction_summary():
     print("\n--- PDF EXTRACTION LIBRARIES ---")
 
@@ -209,56 +247,215 @@ def bounding_box_demo():
 
 
 # -------------------------
-# 10. MAIN PIPELINE (UPDATED)
+# 10. PROJECT 4: SDF OCR EXTRACTION
 # -------------------------
+
+def extract_sdf_fields(text):
+    """Extract key pharmaceutical SDF fields."""
+
+    results = {}
+
+    # Gamma Process Run ID
+    gamma_match = re.search(
+        r"gamma\s+process\s+run\s+id[:\s-]*([A-Za-z0-9-]+)",
+        text,
+        re.IGNORECASE
+    )
+
+    results["gamma_process_run_id"] = (
+        gamma_match.group(1)
+        if gamma_match
+        else None
+    )
+
+    # Product Lot Number
+    lot_match = re.search(
+        r"(?:product\s+)?lot\s+(?:number|no\.?)[:\s-]*([A-Za-z0-9-]+)",
+        text,
+        re.IGNORECASE
+    )
+
+    results["product_lot_number"] = (
+        lot_match.group(1)
+        if lot_match
+        else None
+    )
+
+    # Minimum Specified Dose
+    min_specified_match = re.search(
+        r"minimum\s+specified\s+dose[:\s-]*([0-9.]+)",
+        text,
+        re.IGNORECASE
+    )
+
+    results["minimum_specified_dose"] = (
+        min_specified_match.group(1)
+        if min_specified_match
+        else None
+    )
+
+    # Minimum Delivered Dose
+    min_delivered_match = re.search(
+        r"minimum\s+delivered\s+dose[:\s-]*([0-9.]+)",
+        text,
+        re.IGNORECASE
+    )
+
+    results["minimum_delivered_dose"] = (
+        min_delivered_match.group(1)
+        if min_delivered_match
+        else None
+    )
+
+    # Maximum Specified Dose
+    max_specified_match = re.search(
+        r"maximum\s+specified\s+dose[:\s-]*([0-9.]+)",
+        text,
+        re.IGNORECASE
+    )
+
+    results["maximum_specified_dose"] = (
+        max_specified_match.group(1)
+        if max_specified_match
+        else None
+    )
+
+    # Maximum Delivered Dose
+    max_delivered_match = re.search(
+        r"maximum\s+delivered\s+dose[:\s-]*([0-9.]+)",
+        text,
+        re.IGNORECASE
+    )
+
+    results["maximum_delivered_dose"] = (
+        max_delivered_match.group(1)
+        if max_delivered_match
+        else None
+    )
+
+    return results
+
+
+def create_json_output(sdf_fields):
+    """Convert extracted SDF fields into AI-ready JSON."""
+
+    return json.dumps(
+        sdf_fields,
+        indent=4
+    )
+
+
+def create_bounding_box_data():
+    """Create example OCR bounding box data."""
+
+    bbox_data = [
+        {
+            "text": "CERTIFICATE",
+            "bbox": [120, 100, 300, 135],
+            "confidence": 0.98
+        },
+        {
+            "text": "Product Lot Number",
+            "bbox": [120, 200, 350, 230],
+            "confidence": 0.95
+        }
+    ]
+
+    return bbox_data
+
+
+# -------------------------
+# 11. PROJECT 5: OCR ENGINE COMPARISON
+# -------------------------
+
+def ocr_engine_comparison():
+    """Compare Tesseract, PaddleOCR, and EasyOCR."""
+
+    print("\n--- OCR ENGINE COMPARISON ---")
+
+    ocr_engines = {
+        "Tesseract": {
+            "strength": "Simple and lightweight OCR",
+            "output": "Extracted text",
+            "layout": "Limited layout awareness"
+        },
+
+        "PaddleOCR": {
+            "strength": "Strong performance on complex documents",
+            "output": "Text, confidence scores, and bounding boxes",
+            "layout": "Strong layout and position awareness"
+        },
+
+        "EasyOCR": {
+            "strength": "Easy to install and use",
+            "output": "Text, confidence scores, and bounding boxes",
+            "layout": "Good for simple forms and scanned documents"
+        }
+    }
+
+    for engine, details in ocr_engines.items():
+
+        print(f"\n{engine}")
+        print(f"Strength: {details['strength']}")
+        print(f"Output: {details['output']}")
+        print(f"Layout: {details['layout']}")
+
+
+# -------------------------
+# 12. MAIN PIPELINE
+# -------------------------
+
 def main():
+
     file_path = "sample_output.txt"
 
+    # -------------------------
     # Load + clean
+    # -------------------------
+
     text = load_document(file_path)
     cleaned_text = clean_text(text)
 
+    # -------------------------
     # Core analysis
+    # -------------------------
+
     simple_analysis(cleaned_text)
     document_statistics(cleaned_text)
     top_words(cleaned_text)
 
+    # -------------------------
     # Structured summary
+    # -------------------------
+
     summary = build_summary(cleaned_text)
 
     print("\n--- STRUCTURED SUMMARY ---")
     print(summary)
 
     # -------------------------
-    # STEP 2 OUTPUT (NEW)
+    # STEP 2: FIELD EXTRACTION
     # -------------------------
+
     print("\n--- STEP 2: FIELD EXTRACTION (REGEX) ---")
+
     fields = extract_fields(cleaned_text)
+
     print(fields)
 
-    # Step 3 demos
+    # -------------------------
+    # STEP 3: IMAGE PROCESSING
+    # -------------------------
+
     image_processing_summary()
     image_preprocessing_pipeline()
 
-    # Step 4 demos
+    # -------------------------
+    # STEP 4: PDF EXTRACTION
+    # -------------------------
+
     pdf_extraction_summary()
     bounding_box_demo()
-
-    # -------------------------
-    # STEP 2 OUTPUT (NEW)
-    # -------------------------
-    print("\n--- STEP 2: FIELD EXTRACTION (REGEX) ---")
-    fields = extract_fields(cleaned_text)
-    print(fields)
-
-    # Step 3 demos
-    image_processing_summary()
-    image_preprocessing_pipeline()
-
-    # Step 4 demos
-    pdf_extraction_summary()
-    bounding_box_demo()
-
 
     # -------------------------
     # PROJECT 4: SDF OCR EXTRACTION
@@ -270,6 +467,9 @@ def main():
 
     print(sdf_fields)
 
+    # -------------------------
+    # AI READY JSON OUTPUT
+    # -------------------------
 
     print("\n--- AI READY JSON OUTPUT ---")
 
@@ -277,6 +477,9 @@ def main():
 
     print(json_output)
 
+    # -------------------------
+    # OCR BOUNDING BOX DATA
+    # -------------------------
 
     print("\n--- OCR BOUNDING BOX DATA ---")
 
@@ -284,9 +487,16 @@ def main():
 
     print(json.dumps(bbox_data, indent=4))
 
+    # -------------------------
+    # PROJECT 5: OCR COMPARISON
+    # -------------------------
+
+    ocr_engine_comparison()
+
 
 # -------------------------
 # RUN PROGRAM
 # -------------------------
+
 if __name__ == "__main__":
     main()
