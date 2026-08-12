@@ -78,3 +78,159 @@
 * **LLMs** generate responses, while **embedding models** help find relevant information.
 * RAG is especially useful for pharmaceutical workflows where answers need to be grounded in specific documents and accurate source information.
 
+Understanding Chunking
+
+Estimated Time to Read: 20 minutes
+notion image
+ 
+In the last module, you learned about embeddings—how AI maps the meaning of words and ideas into numbers, making search smarter and more accurate.
+But before AI can even create embeddings, it faces another big challenge: How do you feed a huge document into the AI without overwhelming it?
+That’s the job for chunking.
+ 
+In this module, you’ll learn how to break down long documents into smaller, meaningful pieces. You’ll explore different chunking strategies, why chunk size matters, and how smart chunking helps AI find exactly what it needs, without getting lost in a sea of text. 
+notion image
+Let’s begin!
+ 
+Chunking: The Key to Handling Long Documents
+Chunking is exactly what it sounds like—breaking a long document into smaller, more manageable pieces. 
+Instead of treating the document as one giant block of text, chunking ensures that AI can process it in bite-sized sections and retrieve only the most relevant parts.
+Source
+Source
+Here’s why chunking is important:
+If AI retrieves huge blocks of text, you have to dig through a bunch of irrelevant information.
+If AI retrieves only the most relevant sections, you get precise, useful answers.
+ 
+Example of Chunking:
+Imagine you have a 1,000-word article on hiking gear. Instead of feeding the whole article into an AI model, it gets split into smaller "chunks," like this:
+Chunk 1 (Intro to Hiking Gear, 150 words)
+Chunk 2 (Backpacks & Features, 200 words)
+Chunk 3 (Hiking Boots & Materials, 250 words)
+Chunk 4 (Rain Gear & Weather Considerations, 180 words)
+If you ask, "What’s the best hiking boot material?", AI searches the hiking boots chunk rather than the whole document.
+ 
+Trade-offs in Chunking: Finding the Right Balance
+Choosing the right chunk size (pieces of text) is a trade-off between context retention and retrieval precision. Here’s how different sizes impact AI performance:
+Chunk Size
+Pros
+Cons
+Small Chunks (50-200 tokens)
+Precise, faster retrieval, avoids irrelevant data
+May lose important context, leading to incomplete answers
+Medium Chunks (200-500 tokens)
+Best balance of precision & context retention
+Requires careful tuning for best results
+Large Chunks (500+ tokens)
+Preserves more context, reducing loss of meaning
+Slower retrieval, may contain too much irrelevant text
+Different document types and AI applications need different chunk sizes.
+Legal and medical documents → Larger chunks to retain meaning.
+Quick Q&A chatbots → Smaller chunks for fast, focused answers.
+In short:
+Small chunks = precise but might lack context.
+Big chunks = more context, but slower and messier.
+Medium chunks = usually the best trade-off, but still requires tuning.
+ 
+OPTIONAL READ: Here is a quick guide by LlamaIndex on this topic - 
+ 
+Different Ways to Chunk a Document
+Not all chunking strategies are created equal! The right method depends on your data type and how AI will retrieve information.
+Source
+Source
+ 
+1. Fixed-Size Chunking
+This method just splits the text into equal-sized pieces, no matter where sentences or topics start and end.
+Divides text into equal-sized chunks (e.g., every 300 tokens), regardless of meaning.
+✅ Pros
+❌ Cons
+Easy to implement → No extra processing needed
+May cut off sentences mid-way
+Works well for structured text
+Context is not preserved naturally
+📢 Best for: News articles, structured documents with uniform text flow.
+ 
+2. Overlapping Chunking
+Instead of clean breaks, this method overlaps chunks slightly to make sure important context isn’t lost.
+✅ Pros
+❌ Cons
+Helps AI retain context
+Uses more storage (some text gets indexed twice)
+Improves accuracy for retrieving relevant text
+Needs fine-tuning to get the overlap right
+Example: If chunk 1 ends at sentence 10, chunk 2 might start from sentence 9, ensuring continuity.
+Why This Helps
+Without overlap, an AI might miss key context when responding to queries.
+Without overlap: "The new policy applies to..." → AI doesn’t retrieve the earlier part of the rule.
+With overlap: "The new policy applies to all employees starting next quarter." → AI gets the full context.
+📢 Best for: Legal contracts, research papers, policy documents.
+ 
+3. Semantic Chunking (The Smartest Method)
+Instead of using word count, this method identifies natural topic breaks using embeddings.
+Think of it like a book’s table of contents—it splits text where the topic naturally changes instead of after an exact number of words.
+✅ Pros
+❌ Cons
+Preserves full meaning
+Takes more processing power
+Best for unstructured text (like research papers, legal docs, or books)
+Requires AI to analyze content before splitting
+📢 Best for: Long-form text like books, Wikipedia pages, and technical manuals.
+ 
+4. Recursive Chunking (For Structured Documents)
+How It Works
+First, split the text by headings (H1, H2, etc.).
+Then, break down each section into smaller chunks for better retrieval.
+Think of it like organizing a report:
+First, divide it into chapters (big sections).
+Then, split those into paragraphs (smaller, focused chunks).
+✅ Pros:
+❌ Cons:
+Keeps the document’s structure intact, making retrieval more precise
+Requires clear headings or metadata to work
+Works well for contracts, reports, and research papers
+Not ideal for unstructured text
+📢 Best for: Business reports, legal documents and research papers.
+ 
+Choosing the Right Chunk Size & Strategy
+Why Does Chunk Size Matter? Imagine trying to search a dictionary that only gives you one word at a time vs. one that gives you entire pages of related words. The right balance makes retrieval accurate & efficient.
+How to Determine the Best Chunking Approach?
+Document Type
+Best Chunking Strategy
+Reason
+News Articles
+Fixed-Length Chunking
+Consistent structure, no need for deep context preservation
+Legal Contracts
+Semantic Chunking
+Requires logical section breaks to preserve legal clauses
+Research Papers
+Overlapping Chunking
+Ensures key points aren’t split across chunks
+PDF Reports
+Recursive Chunking
+Maintains structure by using headings before chunking
+Key Takeaway: The right chunking approach depends on the document type—structured text benefits from simple chunking, while complex documents need advanced strategies.
+ 
+Why This Matters for AI-Powered Search
+Let's say a pharmaceutical company is using AI to answer quality questions about their products.
+A quality analyst asks: "What test method was used for sterilization?"
+If the document isn't chunked properly, AI might return an entire page of technical data—forcing the analyst to dig through it.
+With smart chunking, AI can grab just the one paragraph that actually answers the question.
+This makes AI-powered tools way more efficient in pharmaceuticals, healthcare, compliance, and any field where documents are long and complex.
+ 
+🔑
+Quick Recap:
+Why AI Struggles with Long Documents
+AI models have a fixed memory window and forget earlier parts of long documents.
+Too much text → AI includes irrelevant details, making responses vague.
+Too little text → AI misses key details, leading to incomplete answers.
+Keyword search limitations → AI finds exact matches but may miss related concepts.
+How to Fix It: Embeddings & Chunking
+Embeddings → AI understands meaning, not just keywords (e.g., "sterilization" ≈ "autoclave processing").
+Chunking → Splits long documents into smaller, searchable sections, ensuring AI retrieves only relevant parts.
+Best Chunking Methods for Different Documents
+Fixed-Length Chunking → Simple but may break context.
+Overlapping Chunking → Retains more context but uses extra storage.
+Semantic Chunking → Best for meaning but requires processing.
+Recursive Chunking → Maintains document structure (great for legal or research papers).
+📌 Key Takeaway: AI-powered search works best when documents are properly chunked and indexed using embeddings, ensuring precise, context-aware answers!
+😄
+With this, you have reached the end of this module.
