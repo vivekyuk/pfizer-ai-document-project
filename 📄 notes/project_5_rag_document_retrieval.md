@@ -234,3 +234,237 @@ Recursive Chunking → Maintains document structure (great for legal or research
 📌 Key Takeaway: AI-powered search works best when documents are properly chunked and indexed using embeddings, ensuring precise, context-aware answers!
 😄
 With this, you have reached the end of this module.
+# Project 5 — Query Processing & Retrieval Optimization
+
+## 1. Query Processing
+
+### What is query processing?
+
+Query processing helps AI understand **what the user is actually asking** before searching through documents.
+
+A user's wording might not match the wording used in the document. Query processing helps bridge that gap by improving or rewriting the question before retrieval.
+
+Example:
+
+Without query processing:
+"What are the storage conditions?"
+
+The document might instead say:
+"Recommended storage temperature"
+
+With query processing:
+"What are the recommended storage temperature and conditions for this product?"
+
+This makes it easier for the RAG system to find the relevant information.
+
+### Why query processing matters
+
+Without query processing:
+- AI might miss relevant information.
+- The user's wording may not match the document.
+- Search results can be too broad or unrelated.
+
+With query processing:
+- AI better understands the intent of the question.
+- Queries can be rewritten using terminology from the documents.
+- Retrieval becomes more accurate.
+
+### Main Query Processing Techniques
+
+#### Query Expansion
+
+AI adds related words, synonyms, or additional context to the original question.
+
+Example:
+
+User Query:
+"What is the expiration date?"
+
+Expanded Query:
+"What is the batch expiration date for this pharmaceutical product?"
+
+Why it helps:
+- Bridges terminology gaps.
+- Helps when documents use terms like "shelf life" instead of "expiration date."
+- Improves the chance of retrieving relevant information.
+
+---
+
+#### Query Rewriting
+
+AI restructures the question so it better matches the language used in the document.
+
+Example:
+
+Original:
+"Tell me about the test results."
+
+Rewritten:
+"What quality control test methods and results are documented in the certificate?"
+
+Why it helps:
+- Makes vague questions more specific.
+- Improves matching with technical or legal documents.
+- Helps retrieval focus on the right information.
+
+---
+
+#### Prompt Engineering
+
+An LLM can clarify or reformulate a vague question before retrieval.
+
+Example:
+
+User:
+"Does this batch comply?"
+
+LLM reformulation:
+"Are there GMP compliance records, quality test results, or certificates of quality for this batch?"
+
+Why it helps:
+- Breaks vague questions into more specific search terms.
+- Gives the retrieval system a clearer target.
+- Can improve results for complex questions.
+
+### Key Idea
+
+Better input → Better search → Better results
+
+Query processing helps the RAG system search for **meaning and intent**, rather than only matching the exact words the user typed.
+
+
+# 2. Retrieval Optimization
+
+Even after improving the query, the RAG system might retrieve multiple possible answers.
+
+The next problem is:
+
+> Which retrieved result is actually the most useful?
+
+This is where **reranking** and **hybrid retrieval** become important.
+
+
+## 3. Retrieval Reranking
+
+### What is reranking?
+
+Reranking reorganizes retrieved results so that the **most useful and relevant information appears first**.
+
+Example:
+
+Query:
+"What are the storage conditions for this product?"
+
+Without reranking:
+"Storage conditions are specified on the label."
+
+With reranking:
+"Store between 2°C and 8°C. Protect from light. Do not freeze."
+
+The second result gives much more useful information, so it should be ranked higher.
+
+### Why reranking matters
+
+A retrieval system might find several relevant chunks, but they aren't all equally useful.
+
+Reranking helps:
+- Put the strongest results first.
+- Remove or deprioritize irrelevant information.
+- Give the LLM better context.
+- Improve the accuracy of the final response.
+
+
+## 4. Reranking Methods
+
+### Embedding Similarity Reranking
+
+Results are sorted based on how close their embeddings are to the query.
+
+Best for:
+- Simple semantic similarity.
+- Fast retrieval ranking.
+
+### Hybrid Reranking
+
+Combines:
+- Vector similarity
+- Keyword matching
+
+Best for:
+- Situations where both exact terms and related meanings matter.
+
+### LLM-Assisted Reranking
+
+An LLM evaluates retrieved text and scores it based on how useful it would be for answering the question.
+
+Best for:
+- Contextually complex questions.
+- Selecting results based on answer quality.
+- Filtering out irrelevant information.
+
+### Reranking Summary
+
+| Method | How It Works | Best Use |
+|---|---|---|
+| Embedding Similarity | Ranks by vector similarity | Semantic matching |
+| Hybrid Reranking | Combines keyword + vector similarity | Exact terms + meaning |
+| LLM-Assisted | LLM scores the usefulness of results | Complex/contextual questions |
+
+
+# 5. Hybrid Retrieval
+
+### What is hybrid retrieval?
+
+Hybrid retrieval combines **keyword search** and **vector search**.
+
+Keyword search is good at finding exact terms, while vector search is better at finding related concepts.
+
+Using both gives the RAG system the benefits of each approach.
+
+### Keyword Search
+
+Keyword search looks for exact words or phrases.
+
+Example:
+
+Query:
+"What test results are in the certificate?"
+
+Keyword search might find a section titled:
+
+"Test Results"
+
+### Vector Search
+
+Vector search uses embeddings to find conceptually similar information.
+
+It might find a paragraph about:
+
+"Quality compliance records and certificates"
+
+Even though the exact phrase "test results" might not appear, the content is still related.
+
+### Hybrid Search
+
+Hybrid search combines both results.
+
+```text
+User Query
+     ↓
+Keyword Search
+     ↓
+Exact Matches
+     +
+Vector Search
+     ↓
+Conceptually Similar Results
+     ↓
+Merge Results
+     ↓
+Rerank
+     ↓
+Best Relevant Results
+     ↓
+LLM
+     ↓
+Final Answer
